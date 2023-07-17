@@ -5,7 +5,7 @@ import { FaUsers, FaUserFriends, FaCodepen, FaStore } from "react-icons/fa";
 
 function User() {
   //this guy now is coming with the user datails
-  const { user, getUser } = useContext(GithubContext);
+  const { user, getUser, repos, getRepos } = useContext(GithubContext);
 
   const {
     name,
@@ -31,6 +31,7 @@ function User() {
   useEffect(() => {
     //its going as a name to fit in the api and get the user details
     getUser(params.login);
+    getRepos(params.login);
   }, []);
   return (
     <>
@@ -157,7 +158,7 @@ function User() {
           </div>
         </div>
 
-        {/* <RepoList repos={repos} /> */}
+        <RepoList repos={repos} />
       </div>
     </>
   );
