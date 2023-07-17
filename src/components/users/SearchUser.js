@@ -12,8 +12,13 @@ function SearchUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    searchUsers(text);
-    setText("");
+
+    if (text === "") {
+      alert("please enter something");
+    } else {
+      searchUsers(text);
+      setText("");
+    }
   };
 
   return (
@@ -27,6 +32,7 @@ function SearchUser() {
                 className="w-full pr-40 bg-gray-200 input input-lg text-black"
                 placeholder="Search"
                 onChange={handleChange}
+                value={text}
               />
               <button
                 type="submit"
