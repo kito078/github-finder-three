@@ -2,6 +2,7 @@ import React from "react";
 import RepoItem from "./RepoItem";
 
 function RepoList({ repos }) {
+  console.log(repos);
   return (
     <div className="rounded-lg shadow-lg card bg-base-100">
       <div className="card-body">

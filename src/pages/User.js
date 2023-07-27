@@ -27,6 +27,7 @@ function User() {
     public_gists,
     hireable,
   } = user;
+  console.log(user);
 
   //To get login name from the browser url
   const params = useParams();
@@ -55,7 +56,7 @@ function User() {
   };
   useEffect(() => {
     getUserData();
-  });
+  }, []);
 
   return (
     <>
