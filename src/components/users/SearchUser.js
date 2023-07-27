@@ -1,22 +1,32 @@
 import React, { useContext, useState } from "react";
 import GithubContext from "../../hooks/GithubContext";
+import { searchUsers } from "../../hooks/GithubAction";
 
 function SearchUser() {
   const [text, setText] = useState("");
 
-  const { searchUsers } = useContext(GithubContext);
+  const { dispatch } = useContext(GithubContext);
 
   const handleChange = (e) => {
     setText(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (text === "") {
       alert("please enter something");
     } else {
-      searchUsers(text);
+      dispatch({
+        type: "SET_LOADING",
+      });
+      const users = await searchUsers(text);
+
+      dispatch({
+        type: "SEARCH_USERS",
+        payload: users,
+      });
+
       setText("");
     }
   };

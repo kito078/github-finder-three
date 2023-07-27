@@ -19,30 +19,6 @@ export const GithubProvider = ({ children }) => {
   //   fetchUsers();
   // }, []);
 
-  //SERCH USERS
-  const searchUsers = async (text) => {
-    setLoading();
-
-    const params = new URLSearchParams({
-      q: text,
-    });
-
-    const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
-
-    const { items } = await response.json();
-    // setUsers(data);
-    // setLoading(false);
-
-    dispatch({
-      type: "SEARCH_USERS",
-      payload: items,
-    });
-  };
-
   //GET USER
   const getUser = async (login) => {
     setLoading();
@@ -91,10 +67,12 @@ export const GithubProvider = ({ children }) => {
   return (
     <GithubContext.Provider
       value={{
-        users: state.users,
-        loading: state.loading,
-        user: state.user,
-        repos: state.repos,
+        ...state,
+        // users: state.users,
+        // loading: state.loading,
+        // user: state.user,
+        // repos: state.repos,
+        dispatch,
         searchUsers,
         getUser,
         getRepos,
