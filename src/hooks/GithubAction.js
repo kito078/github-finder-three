@@ -58,6 +58,6 @@ export const getRepos = async (login) => {
   //   type: "GET_REPOS",
   //   payload: data,
   // });
-
+  console.log(data);
   return data;
 };

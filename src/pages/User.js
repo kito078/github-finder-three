@@ -38,23 +38,23 @@ function User() {
   //   getRepos(params.login);
   // }, []);
 
-  const getUserData = async () => {
-    dispatch({ type: "SET_LOADING" });
-    //get user
-    const userData = await getUser(params.login);
-    dispatch({
-      type: "GET_USER",
-      payload: userData,
-    });
-
-    //get repos
-    const repoData = await getRepos(params.login);
-    dispatch({
-      type: "GET_REPOS",
-      payload: repoData,
-    });
-  };
   useEffect(() => {
+    const getUserData = async () => {
+      dispatch({ type: "SET_LOADING" });
+      //get user
+      const userData = await getUser(params.login);
+      dispatch({
+        type: "GET_USER",
+        payload: userData,
+      });
+
+      //get repos
+      const repoData = await getRepos(params.login);
+      dispatch({
+        type: "GET_REPOS",
+        payload: repoData,
+      });
+    };
     getUserData();
   }, []);
 
@@ -183,7 +183,7 @@ function User() {
           </div>
         </div>
 
-        <RepoItem repos={repos} />
+        {/* <RepoItem repos={repos} /> */}
       </div>
     </>
   );
