@@ -5,7 +5,7 @@ import { searchUsers } from "../../hooks/GithubAction";
 function SearchUser() {
   const [text, setText] = useState("");
 
-  const { dispatch } = useContext(GithubContext);
+  const { users, dispatch } = useContext(GithubContext);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -54,11 +54,11 @@ function SearchUser() {
           </div>
         </form>
       </div>
-      {/* {users.length > 0 && (
-    <div>
-      <button className="btn btn-ghost btn-lg">Clear</button>
-    </div>
-  )} */}
+      {users.length > 0 && (
+        <div>
+          <button className="btn btn-ghost btn-lg">Clear</button>
+        </div>
+      )}
     </div>
   );
 }
