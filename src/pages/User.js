@@ -4,10 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import { FaUsers, FaUserFriends, FaCodepen, FaStore } from "react-icons/fa";
 import RepoList from "../components/repos/RepoList";
 import RepoItem from "../components/repos/RepoItem";
+import { getUser, getRepos } from "../hooks/GithubAction";
 
 function User() {
   //this guy now is coming with the user datails
-  const { user, getUser, repos, getRepos } = useContext(GithubContext);
+  const { user, repos, dispatch } = useContext(GithubContext);
 
   const {
     name,
@@ -30,11 +31,31 @@ function User() {
   //To get login name from the browser url
   const params = useParams();
 
+  // useEffect(() => {
+  //   //its going as a name to fit in the api and get the user details
+  //   getUser(params.login);
+  //   getRepos(params.login);
+  // }, []);
+
+  const getUserData = async () => {
+    //get user
+    const userData = await getUser(params.login);
+    dispatch({
+      type: "GET_USER",
+      payload: userData,
+    });
+
+    //get repos
+    const repoData = await getRepos(params.login);
+    dispatch({
+      type: "GET_REPOS",
+      payload: repoData,
+    });
+  };
   useEffect(() => {
-    //its going as a name to fit in the api and get the user details
-    getUser(params.login);
-    getRepos(params.login);
-  }, []);
+    getUserData();
+  });
+
   return (
     <>
       <div className="w-full mx-auto lg:w-10/12">
