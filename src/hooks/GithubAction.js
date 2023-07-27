@@ -44,7 +44,7 @@ export const getUser = async (login) => {
     return data;
   }
 };
-//GET REPOS
+// //GET REPOS
 export const getRepos = async (login) => {
   const response = await fetch(`${GITHUB_URL}/users/${login}/repos`, {
     headers: {

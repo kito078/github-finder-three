@@ -10,6 +10,35 @@ function User() {
   //this guy now is coming with the user datails
   const { user, repos, dispatch } = useContext(GithubContext);
 
+  //To get login name from the browser url
+  const params = useParams();
+
+  // useEffect(() => {
+  //   //its going as a name to fit in the api and get the user details
+  //   getUser(params.login);
+  //   getRepos(params.login);
+  // }, []);
+
+  useEffect(() => {
+    dispatch({ type: "SET_LOADING" });
+    const getUserData = async () => {
+      //get user
+      const userData = await getUser(params.login);
+      dispatch({
+        type: "GET_USER",
+        payload: userData,
+      });
+
+      //get repos
+      const repoData = await getRepos(params.login);
+      dispatch({
+        type: "GET_REPOS",
+        payload: repoData,
+      });
+    };
+    getUserData();
+  }, []);
+
   const {
     name,
     company,
@@ -27,35 +56,6 @@ function User() {
     public_gists,
     hireable,
   } = user;
-
-  //To get login name from the browser url
-  const params = useParams();
-
-  // useEffect(() => {
-  //   //its going as a name to fit in the api and get the user details
-  //   getUser(params.login);
-  //   getRepos(params.login);
-  // }, []);
-
-  useEffect(() => {
-    const getUserData = async () => {
-      dispatch({ type: "SET_LOADING" });
-      //get user
-      const userData = await getUser(params.login);
-      dispatch({
-        type: "GET_USER",
-        payload: userData,
-      });
-
-      //get repos
-      const repoData = await getRepos(params.login);
-      dispatch({
-        type: "GET_REPOS",
-        payload: repoData,
-      });
-    };
-    getUserData();
-  }, []);
 
   return (
     <>
@@ -182,7 +182,7 @@ function User() {
           </div>
         </div>
 
-        <RepoItem repos={repos} />
+        <RepoList repos={repos} />
       </div>
     </>
   );
