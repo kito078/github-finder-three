@@ -38,6 +38,7 @@ function User() {
   // }, []);
 
   const getUserData = async () => {
+    dispatch({ type: "SET_LOADING" });
     //get user
     const userData = await getUser(params.login);
     dispatch({
