@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import GithubContext from "../hooks/GithubContext";
 import { Link, useParams } from "react-router-dom";
 import { FaUsers, FaUserFriends, FaCodepen, FaStore } from "react-icons/fa";
+import RepoList from "../components/repos/RepoList";
+import RepoItem from "../components/repos/RepoItem";
 
 function User() {
   //this guy now is coming with the user datails
@@ -158,7 +160,7 @@ function User() {
           </div>
         </div>
 
-        <RepoList repos={repos} />
+        <RepoItem repos={repos} />
       </div>
     </>
   );

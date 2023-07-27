@@ -1,4 +1,5 @@
 import React from "react";
+import { FaLink, FaEye, FaStar, FaInfo, FaUtensils } from "react-icons/fa";
 
 function RepoItem({ repo }) {
   const {

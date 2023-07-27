@@ -73,7 +73,7 @@ export const GithubProvider = ({ children }) => {
         // user: state.user,
         // repos: state.repos,
         dispatch,
-        searchUsers,
+        // searchUsers,
         getUser,
         getRepos,
       }}
