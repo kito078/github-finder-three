@@ -26,8 +26,6 @@ export const searchUsers = async (text) => {
 
 //GET USER
 export const getUser = async (login) => {
-  setLoading();
-
   const response = await fetch(`${GITHUB_URL}/users/${login}`, {
     headers: {
       Authorization: `token ${GITHUB_TOKEN}`,
@@ -48,8 +46,6 @@ export const getUser = async (login) => {
 };
 //GET REPOS
 export const getRepos = async (login) => {
-  setLoading();
-
   const response = await fetch(`${GITHUB_URL}/users/${login}/repos`, {
     headers: {
       Authorization: `token ${GITHUB_TOKEN}`,
